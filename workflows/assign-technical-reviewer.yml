@@ -1,0 +1,30 @@
+# .github/workflows/assign-technical-reviewer.yml
+# When a PR to main becomes ready for review (or is opened / reopened as non-draft),
+# assign it to the Technical Reviewer role and request their review.
+# Draft PRs are skipped. See GOVERNANCE.md.
+
+name: Assign Technical Reviewer
+
+on:
+  pull_request_target:
+    types: [opened, reopened, ready_for_review]
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  assign:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign and request review from @synedrix-os
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          REVIEWER: synedrix-os
+        run: |
+          gh pr edit "$PR" --repo "$REPO" --add-assignee "$REVIEWER"
+          gh pr edit "$PR" --repo "$REPO" --add-reviewer "$REVIEWER"
