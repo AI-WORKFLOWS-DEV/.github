@@ -13,17 +13,17 @@ This document explains how it works, what it guarantees, and what it doesn't.
 | Role | GitHub identity | Can | Cannot |
 |---|---|---|---|
 | **Lead Developer** (author) | [@aiworkflowsdev](https://github.com/aiworkflowsdev) | Write code, open PRs, respond to review, merge once `@synedrix-os` has approved | Approve own PRs, push directly to `main`, bypass rules |
-| **Technical Reviewer** | [@synedrix-os](https://github.com/synedrix-os) | Review PRs, request changes, approve, merge a PR it has approved once all gates are green | Author commits, change repository rules or settings |
+| **Technical Reviewer** | [@synedrix-os](https://github.com/synedrix-os) | Review PRs, request changes, approve, merge a PR it has approved once all gates are green | Author commits to AI-WORKFLOWS.DEV repositories, change repository rules or settings |
 
 Both identities are operated by GP. This is disclosed openly here and on each profile. The accounts exist to separate **responsibilities**, not to imply two people.
 
-**Invariant:** commits come only from `@aiworkflowsdev`; approvals come only from `@synedrix-os`. Anyone can verify this from the commit and review history.
+**Invariant:** in AI-WORKFLOWS.DEV repositories, commits come only from `@aiworkflowsdev`; approvals come only from `@synedrix-os`. Anyone can verify this from the commit and review history. The one thing `@synedrix-os` publishes itself is its own public profile page.
 
 **Merge rule:** a PR may be merged into `main` **only after `@synedrix-os` has approved it**, and only once every other gate in §2 and §3 is green. The approval is the permission to merge; no approval, no merge, and GitHub blocks the merge button until it exists.
 
 - **Who may click merge:** either identity. The merge is a mechanical step performed after the decision has been made, and the decision is the approval.
 - **What merging does not do:** it confers no authorship and is not an approval. Squash and rebase merges keep `@aiworkflowsdev` as the commit author, and the merge itself, with who performed it and when, is recorded in the PR timeline.
-- **What it never allows:** merging a PR that `@synedrix-os` authored, or merging on the strength of any approval other than `@synedrix-os`'s. Code changes are made only as `@aiworkflowsdev`.
+- **What it never allows:** merging a PR that `@synedrix-os` authored, or merging on the strength of any approval other than `@synedrix-os`'s. Code changes to AI-WORKFLOWS.DEV repositories are made only as `@aiworkflowsdev`.
 
 ---
 
