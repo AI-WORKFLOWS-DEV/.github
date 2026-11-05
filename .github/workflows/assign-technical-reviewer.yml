@@ -1,9 +1,10 @@
 # .github/workflows/assign-technical-reviewer.yml
-# When a PR to main becomes ready for review (or is opened / reopened as non-draft),
-# assign it to the Technical Reviewer role and request their review.
-# Draft PRs are skipped. See GOVERNANCE.md.
+# Draft-first policy for PRs to main (see GOVERNANCE.md):
+#   1. A PR opened (or reopened) as "ready for review" is converted back to draft.
+#   2. When a draft is deliberately marked "ready for review", it is assigned to the
+#      Technical Reviewer and their review is requested.
 
-name: Assign Technical Reviewer
+name: PR draft-first and reviewer assignment
 
 on:
   pull_request_target:
@@ -15,8 +16,23 @@ permissions:
   issues: write
 
 jobs:
+  enforce-draft:
+    # Runs only for opened/reopened PRs that are NOT drafts.
+    if: github.event.action != 'ready_for_review' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Convert to draft and explain
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr ready "$PR" --repo "$REPO" --undo
+          gh pr comment "$PR" --repo "$REPO" --body "PRs to \`main\` must start as drafts (see GOVERNANCE.md), so this one was converted to draft automatically. Click **Ready for review** when it is ready; that assigns the Technical Reviewer."
+
   assign:
-    if: github.event.pull_request.draft == false
+    # Runs only when someone marks a draft as ready for review.
+    if: github.event.action == 'ready_for_review'
     runs-on: ubuntu-latest
     steps:
       - name: Assign and request review from @synedrix-os
