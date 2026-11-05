@@ -18,6 +18,7 @@ Both identities are operated by the same person, and this is disclosed openly. T
 | File | Purpose |
 |---|---|
 | [GOVERNANCE.md](GOVERNANCE.md) | The full process: roles, enforced controls, evidence before approval, review discipline, guarantees and limits |
+| [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) | The default pull request description the author fills in: what and why, plan or spec, how it was checked, risk |
 | [REVIEW_TEMPLATE.md](REVIEW_TEMPLATE.md) | The structured review record the Technical Reviewer posts on every pull request |
 
 ## How to verify it
