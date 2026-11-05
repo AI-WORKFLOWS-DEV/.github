@@ -60,4 +60,35 @@ Automated findings inform the review; they don't replace it. The human decision 
 ## 4. Review discipline
 
 - **Draft-first:** every PR to `main` starts as a draft. A PR opened as ready for review is converted back to draft automatically. Marking it **Ready for review** is a deliberate act, and it is what assigns `@synedrix-os` and requests their review.
-- **Cooling-off period:** a PR is not approved within **4 hours** of its last push. Fresh-eyes review is
+- **PR template:** every PR description follows the [PR template](PULL_REQUEST_TEMPLATE.md): what and why, the plan or spec it traces to, how it was checked, and the risk. The reviewer starts from the same facts every time.
+- **Cooling-off period:** a PR is not approved within **4 hours** of its last push. Fresh-eyes review is the honest core of self-review.
+- **Structured record:** every review uses the [review template](REVIEW_TEMPLATE.md): scope, risks, evidence checked, decision. A bare approval with no comment is not accepted.
+- **Request changes is normal:** an approval rate below 100% on first pass is a sign the process is working.
+
+---
+
+## 5. What this guarantees, and what it doesn't
+
+**It guarantees:**
+- No change reaches `main` without passing automated checks and a recorded review.
+- Process can't be skipped under time pressure, because the platform blocks it.
+- A complete, auditable trail of what changed, why, and who signed off in which role.
+
+**It does not guarantee:**
+- Independent judgment. The author and reviewer are the same person. Separation of duties here protects against **shortcuts and lapses**, not against collusion or shared blind spots.
+
+That limit is stated deliberately. Where independent review is contractually required, an external reviewer is added to `CODEOWNERS` and nothing else in this process changes.
+
+---
+
+## 6. Scaling
+
+The process was designed for a team from day one. When a collaborator joins:
+
+1. Add them to the org and to the reviewers team in `CODEOWNERS`.
+2. Optionally raise required approvals to 2 for sensitive paths.
+3. Done. Rules, checks, and templates stay the same.
+
+---
+
+*Maintained by GP · AI-WORKFLOWS.DEV · Questions or audit requests: open an issue in this repository.*
